@@ -2,7 +2,7 @@
 // *  Definições e Funções para Sistema de tempo baseado no Timer2                                   *
 // *                                                                                                 *
 // *  Desenvolvido por David Souza - SmartMosaic - smartmosaic.com.br                                *
-// *  Versão 1.0 - Agosto/2019                                                                       *
+// *  Versão 1.0 - Junho/2020                                                                       *
 // *                                                                                                 *
 // ***************************************************************************************************
 

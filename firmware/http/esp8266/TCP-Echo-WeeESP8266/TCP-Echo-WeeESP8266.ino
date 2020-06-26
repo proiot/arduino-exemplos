@@ -36,6 +36,7 @@ ESP8266 wifi(ESP_Serial);
 //As strings abaixo devem ser alteradas de acordo com os dados de sua rede
 #define SSID        ""
 #define PASSWORD    ""
+nclude "wifi.h"                  //Comente essa linha se inserir os dados nas linhas superiores
 
 // ***************************************************************************************************
 // *  Dados da plataforma PROIOT                                                                     *
