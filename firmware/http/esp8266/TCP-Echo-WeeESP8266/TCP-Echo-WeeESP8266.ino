@@ -34,9 +34,9 @@ ESP8266 wifi(ESP_Serial);
 // *  Dados da rede Wi-Fi                                                                            *
 // ***************************************************************************************************
 //As strings abaixo devem ser alteradas de acordo com os dados de sua rede
-#define SSID        ""
-#define PASSWORD    ""
-nclude "wifi.h"                  //Comente essa linha se inserir os dados nas linhas superiores
+#define SSID        "SUA_REDE"
+#define PASSWORD    "SUA_SENHA"
+
 
 // ***************************************************************************************************
 // *  Dados da plataforma PROIOT                                                                     *
@@ -47,11 +47,16 @@ nclude "wifi.h"                  //Comente essa linha se inserir os dados nas li
 
 //Constantes para o envio do Header HTTP
 //todas as strings abaixo devem ser alteradas de acordo com as configracoes de seu projeto
-#define TOKEN     "cWX3Aw2cE6G87d22sjJJtWAIWxO03q"
-#define NODE      "ard-http-04"
+#define TOKEN     "SEU_TOKEM"
+#define NODE      "SEU_NODE"
 #define ALIAS     "01"
 #define VALUE     "25"
 #define PAUSE      (5)
+
+// ***************************************************************************************************
+// *  Arquivo de chaves externas que sobreescreve dados da rede e do node                            *
+// ***************************************************************************************************
+#include "chaves.h"                  //Comente essa linha se inserir os dados nas linhas superiores
 
 //definição da variável de leitura da resposta do servidor
 String resposta = "";

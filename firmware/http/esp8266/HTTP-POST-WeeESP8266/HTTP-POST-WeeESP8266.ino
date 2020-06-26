@@ -39,9 +39,8 @@ ESP8266 wifi(ESP_Serial);
 // *  Dados da rede WiFi                                                                             *
 // ***************************************************************************************************
 //As strings abaixo devem ser alteradas de acordo com os dados de sua rede
-#define SSID        "REDE"
-#define PASSWORD    "SENHA"
-#include "wifi.h"
+#define SSID        "SUA_REDE"
+#define PASSWORD    "SUA_SENHA"
 
 // ***************************************************************************************************
 // *  Dados da plataforma PROIOT                                                                     *
@@ -52,12 +51,17 @@ ESP8266 wifi(ESP_Serial);
 
 //Constantes para o envio do Header HTTP
 //todas as strings abaixo devem ser alteradas de acordo com as configracoes de seu projeto
-#define TOKEN     "cWX3Aw2cE6G87d22sjJJtWAIWxO03q"
-#define NODE      "ard-http-01"
+#define TOKEN     "SEU_TOKEM"
+#define NODE      "SEU_NODE"
 #define ALIAS     "01"
 #define VAL_MIN   (0)        // valor minimo para o gerador randômico
 #define VAL_MAX   (40)       // valor máximo para o gerador randômico
 #define VAL_FAC   (1)        // valor do fator multiplicado
+
+// ***************************************************************************************************
+// *  Arquivo de chaves externas que sobreescreve dados da rede e do node                            *
+// ***************************************************************************************************
+#include "chaves.h"                  //Comente essa linha se inserir os dados nas linhas superiores
 
 //definição da variável de leitura da resposta do servidor
 String resposta = "";
