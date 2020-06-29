@@ -17,7 +17,7 @@
 // ***************************************************************************************************
 #define TCP_SERVER    OFF       // Inicia servidor TCP
 #define CLOSE_TCP     ON        // Fecha conexão TCP após retransmissão dos dados (ECHO)
-#define BASE_TIME     30        // Tempo entre transmissões automáticas (s)
+#define BASE_TIME     60        // Tempo entre transmissões automáticas (s)
 
 // ***************************************************************************************************
 // *  Bibliotecas                                                                                    *

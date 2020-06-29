@@ -31,10 +31,15 @@
 * Arduino UNO
 * Módulo ESP8266
 
+## ATENÇÃO
+
+* Para usar a WeeESP8266 com o Arduino UNO, após a instalação da biblioteca edite
+  o arquivo ESP8266.h, decomentando a linha 27: #define ESP8266_USE_SOFTWARE_SERIAL
+
 ## Contexto 1 (Teste-Modulo-ESP8266)
 
 * 0: Utiliza somente comandos AT do módulo
-* 1: Somente testa a comunicação com o módulo ESP8266 atraves de uma
+* 1: Somente testa a comunicação com o módulo ESP8266 através de uma
      porta serial via software (UNO)
 
 ## Contexto 2 (TCP-Echo-WeeESP8266)
