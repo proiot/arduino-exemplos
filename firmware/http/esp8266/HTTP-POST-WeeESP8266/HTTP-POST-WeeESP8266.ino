@@ -17,14 +17,15 @@
 // ***************************************************************************************************
 #define TCP_SERVER    OFF       // Inicia servidor TCP
 #define CLOSE_TCP     ON        // Fecha conexão TCP após retransmissão dos dados (ECHO)
-#define BASE_TIME     60        // Tempo entre transmissões automáticas (s)
+#define BASE_TIME     15        // Tempo entre transmissões automáticas (s)
 
 // ***************************************************************************************************
 // *  Bibliotecas                                                                                    *
 // ***************************************************************************************************
 #include "SoftwareSerial.h"
-#include "ESP8266.h"
 
+#define ESP8266_USE_SOFTWARE_SERIAL // Define necessário para que a biblioteca ESP8266 funcione com Software Serial
+#include "ESP8266.h"
 
 // ***************************************************************************************************
 // *  Portas e comunicação com os periféricos                                                        *
