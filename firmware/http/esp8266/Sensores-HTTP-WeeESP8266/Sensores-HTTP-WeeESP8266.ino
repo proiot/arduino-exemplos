@@ -44,7 +44,6 @@
 // ***************************************************************************************************
 // *  Definição da origem dos dados e Alias                                                          *
 // ***************************************************************************************************
-
 #define TEMP          DHT22     // Origem da temperatura (RAND. LM35, DHT11, DHT22, OFF)
 #define TEMP_ALIAS    "01"      // Alias da temperatura
 #define HUMI          DHT22     // Origem da temperatura (RAND. DHT11, DHT22, OFF)
@@ -68,7 +67,6 @@
 // ***************************************************************************************************
 // *  Portas e comunicação com os periféricos                                                        *
 // ***************************************************************************************************
-
 #if (USE_ESP == ON)
   //Definição da porta de comunicação com ESP8226
   SoftwareSerial ESP_Serial(10, 11); // RX, TX
@@ -196,7 +194,6 @@ void setup(void)
 // *  LOOP principal                                                                                 *
 // ***************************************************************************************************
 // Quando a base de tempo é atingida, lê sensores e envia os dados
-
 void loop(void)
 {
   #if (USE_WDT == ON)
