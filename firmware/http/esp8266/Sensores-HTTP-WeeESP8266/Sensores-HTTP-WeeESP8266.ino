@@ -17,8 +17,8 @@
 // ***************************************************************************************************
 // *  Definições de Operação                                                                         *
 // ***************************************************************************************************
-#define BASE_TIME_SEND     20        // Tempo entre transmissões automáticas (s)
-#define BASE_TIME_SENSOR   10        // Tempo entre leitura do sensores (s)
+#define BASE_TIME_SEND     10        // Tempo entre transmissões automáticas (s)
+#define BASE_TIME_SENSOR   5        // Tempo entre leitura do sensores (s)
 
 #if (BASE_TIME_SENSOR>BASE_TIME_SEND)
   #error (Base de leitura deve ser menor que a base de envio)                             //Base de leitura deve ser menor que a base de envio
@@ -50,6 +50,8 @@
 #define TEMP_ALIAS    "01"      // Alias da temperatura
 #define HUMI          DHT22     // Origem da temperatura (RAND. DHT11, DHT22, OFF)
 #define HUMI_ALIAS    "02"      // Alias da umidade
+#define TEMP2         RAND     // Origem da temperatura (RAND. LM35, DHT11, DHT22, OFF)
+#define TEMP2_ALIAS   "03"      // Alias da temperatura
 
 // ***************************************************************************************************
 // *  Bibliotecas e includes                                                                         *
@@ -121,8 +123,13 @@ int  base_time_sensor = BASE_TIME_SENSOR;   // Contador de tempo para transmiss�
 
 float temperature = 0;        // Valor da temperatura
 float humidity = 0;           // valor da umidade
+float temperature2 = 0;       // Valor da temperatura 2
 
 int num_var = 3;
+
+#define VAL_MIN   (0)        // valor minimo para o gerador randômico
+#define VAL_MAX   (40)       // valor máximo para o gerador randômico
+#define VAL_FAC   (1)        // valor do fator multiplicado
 
 // ***************************************************************************************************
 // *  Variáveis do Timer2  (Temporizador)                                                            *
@@ -143,7 +150,7 @@ typedef struct data_var
   float valor;            //A variável value já existe, para não causar confusão, foi usado em pt-br valor
   int sensor;
 } data_var;
-data_var var[num_var];
+data_var var[3];
 
 // ***************************************************************************************************
 // *  Função de SETUP do sistema                                                                     *
@@ -262,28 +269,58 @@ void send_data(void)
 
   var[0].Alias = TEMP_ALIAS;
   var[0].valor = temperature;
-  var[0].sensor = DHT22;
+  var[0].sensor = TEMP;
 
   var[1].Alias = HUMI_ALIAS;
   var[1].valor = humidity;
-  var[1].sensor = LM35;
+  var[1].sensor = HUMI;
+
+  var[2].Alias = TEMP2_ALIAS;
+  var[2].valor = temperature2;
+  var[2].sensor = TEMP2;
+  #if (DEBUG == ON)
+  Serial.println();
+  if (var[0].sensor == OFF && var[1].sensor == OFF && var[2].sensor == OFF)
+  Serial.println("Nenhum sensor ativo!");
   
+  if (var[0].sensor != OFF){
+    Serial.println();
+    Serial.print(var[0].Alias);
+    Serial.print('\t');
+    Serial.print(var[0].valor);
+    Serial.print('\t');
+    Serial.println(var[0].sensor);
+  }
+  if (var[1].sensor != OFF){
+    Serial.print(var[1].Alias);
+    Serial.print('\t');
+    Serial.print(var[1].valor);
+    Serial.print('\t');
+    Serial.println(var[1].sensor);
+  }
+  if (var[2].sensor != OFF){
+    Serial.print(var[2].Alias);
+    Serial.print('\t');
+    Serial.print(var[2].valor);
+    Serial.print('\t');
+    Serial.println(var[2].sensor);
+  }
+    Serial.println();
+  #endif
+    
   // Envio da temperatura
   if (TEMP != OFF)
-    Serial.println(var[0].Alias);
-    Serial.println(var[0].valor);
-    Serial.println(var[0].sensor);
-
-    Serial.println(var[1].Alias);
-    Serial.println(var[1].valor);
-    Serial.println(var[1].sensor);
-
-    send_TCP(var[0].valor, var[0].Alias);
-    //send_TCP(temperature, TEMP_ALIAS);
+    //send_TCP(var[0].valor, var[0].Alias);
+    send_TCP(temperature, TEMP_ALIAS);
 
   // Envio da umidade
   if (HUMI != OFF)
     send_TCP(humidity,HUMI_ALIAS);
+
+  // Envio da temperatura 2
+  if (TEMP2 != OFF)
+    //send_TCP(var[0].valor, var[0].Alias);
+    send_TCP(temperature2, TEMP2_ALIAS);
 }
 
 // ***************************************************************************************************
