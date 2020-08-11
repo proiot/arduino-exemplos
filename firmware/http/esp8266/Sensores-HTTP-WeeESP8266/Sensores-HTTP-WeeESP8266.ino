@@ -278,7 +278,7 @@ void send_data(void)
   
   #if (DEBUG == ON)
 
-//Print da tabela das variáveis e valores das estruturas
+//Print da tabela das variáveis e valores da estrutura de dados
   Serial.println();
   if (var[0].sensor == OFF && var[1].sensor == OFF && var[2].sensor == OFF)
   Serial.println("Nenhum sensor ativo!");
@@ -319,7 +319,6 @@ void send_data(void)
 
   // Envio da temperatura 2
   if (TEMP2 != OFF)
-    //send_TCP(var[0].valor, var[0].Alias);
     send_TCP(temperature2, TEMP2_ALIAS);
 }
 
