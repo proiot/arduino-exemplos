@@ -67,5 +67,18 @@ void read_sensors(void)
     #else
       temperature = 0;
     #endif
+
+        // Definição da Temperatura 2
+    #if (TEMP2 == RAND)
+      temperature2 = random(VAL_MIN, VAL_MAX) * VAL_FAC;
+    #elif (TEMP2 == DHT11 && USE_DHT11 == ON)
+      dht11.read(&temperature2, &humidity, NULL);
+    #elif (TEMP2 == DHT22 && USE_DHT22 == ON)
+      dht22.read2(&temperature2, &humidity, NULL);
+    #elif (TEMP2 == LM35 && USE_LM35 == ON)
+      temperature2 = (float(analogRead(PIN_LM35)) * 5 / (1023)) / 0.01;
+    #else
+      temperature2 = 0;
+    #endif
  
 }
