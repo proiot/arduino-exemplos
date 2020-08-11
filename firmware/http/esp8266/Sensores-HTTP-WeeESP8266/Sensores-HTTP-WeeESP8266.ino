@@ -50,7 +50,7 @@
 #define TEMP_ALIAS    "01"      // Alias da temperatura
 #define HUMI          DHT22     // Origem da temperatura (RAND. DHT11, DHT22, OFF)
 #define HUMI_ALIAS    "02"      // Alias da umidade
-#define TEMP2         RAND     // Origem da temperatura (RAND. LM35, DHT11, DHT22, OFF)
+#define TEMP2         OFF     // Origem da temperatura (RAND. LM35, DHT11, DHT22, OFF)
 #define TEMP2_ALIAS   "03"      // Alias da temperatura
 
 // ***************************************************************************************************
@@ -278,6 +278,7 @@ void send_data(void)
   var[2].Alias = TEMP2_ALIAS;
   var[2].valor = temperature2;
   var[2].sensor = TEMP2;
+  
   #if (DEBUG == ON)
   Serial.println();
   if (var[0].sensor == OFF && var[1].sensor == OFF && var[2].sensor == OFF)
@@ -311,7 +312,7 @@ void send_data(void)
   // Envio da temperatura
   if (TEMP != OFF)
     //send_TCP(var[0].valor, var[0].Alias);
-    send_TCP(temperature, TEMP_ALIAS);
+    send_TCP(var[0].valor, TEMP_ALIAS);
 
   // Envio da umidade
   if (HUMI != OFF)
@@ -428,9 +429,9 @@ void reset_esp(void)
 {
   int num = NUM_ERROR_ESP;
   while (!init_esp() && num>0){
-    #if (DEBUG == ON)
+    //#if (DEBUG == ON)
       Serial.println(F("Erro ao conectar, resetando o ESP8266!"));  //Mensagem de erro
-    #endif
+    //#endif
     #if (USE_RESET_ESP)
       #if (DEBUG == ON)
         digitalWrite(PIN_RESET_ESP, LOW);                             //Manda sinal 1 para o pino de reset
