@@ -48,8 +48,8 @@
 #define TEMP_ALIAS    "01"      // Alias da temperatura
 #define HUMI          DHT22     // Origem da temperatura (RAND. DHT11, DHT22, OFF)
 #define HUMI_ALIAS    "02"      // Alias da umidade
-#define TEMP2         OFF     // Origem da temperatura (RAND. LM35, DHT11, DHT22, OFF)
-#define TEMP2_ALIAS   "03"      // Alias da temperatura
+#define TEMP2         OFF       // Origem da temperatura 2 (RAND. LM35, DHT11, DHT22, OFF)
+#define TEMP2_ALIAS   "03"      // Alias da temperatura 2
 
 // ***************************************************************************************************
 // *  Bibliotecas e includes                                                                         *
@@ -262,7 +262,8 @@ void loop(void)
 // ***************************************************************************************************
 void send_data(void)
 {
-
+  
+//Definições das variáveis e valores da estrutura de dados
   var[0].Alias = TEMP_ALIAS;
   var[0].valor = temperature;
   var[0].sensor = TEMP;
@@ -276,6 +277,8 @@ void send_data(void)
   var[2].sensor = TEMP2;
   
   #if (DEBUG == ON)
+
+//Print da tabela das variáveis e valores das estruturas
   Serial.println();
   if (var[0].sensor == OFF && var[1].sensor == OFF && var[2].sensor == OFF)
   Serial.println("Nenhum sensor ativo!");
