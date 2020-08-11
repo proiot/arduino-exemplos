@@ -4,3 +4,4 @@ firmware/http/esp8266/HTTP-POST-WeeESP8266/chaves.h
 firmware/http/esp8266/TCP-Echo-WeeESP8266/chaves.h
 libraries/RN2903-Arduino-SM/examples/LoRaWan_Acesso_Equipamento
 libraries/RN2903-Arduino-SM/examples/LoRaWan_Chamado_Manutencao
+firmware/http/esp8266/Sensores-HTTP-WeeESP8266/chaves.h
